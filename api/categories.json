@@ -1,0 +1,14 @@
+[
+  {
+    "name": "To Do",
+    "projects": []
+  },
+  {
+    "name": "In Progress",
+    "projects": []
+  },
+  {
+    "name": "Done",
+    "projects": []
+  }
+]

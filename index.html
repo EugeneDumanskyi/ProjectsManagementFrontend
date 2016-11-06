@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Projects Management App Frontend</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/category.component.css">
+  </head>
+  <body>
+
+  <div ng-app="app">
+
+    <div class="container" ng-controller="MainController as main">
+      <div class="row">
+        <div class="col-xs-4 col-sm-5">
+          <div class="add-section">
+            <input type="text" class="add-section__input" ng-model="main.project" ng-keyup="main.addProject()" placeholder="New project">
+          </div>
+        </div>
+        <div class="col-xs-4 col-sm-5">
+          <div class="add-section">
+            <input type="text" class="add-section__input add-section__input--orange" ng-model="main.category" ng-keyup="main.addCategory()" placeholder="New category">
+          </div>
+        </div>
+        <div class="col-xs-4 col-sm-2"><div class="total-section">Total: <span class="badge" ng-bind="main.total"></span></div></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" ng-class="'col-sm-' + main.cols" ng-repeat="category in main.categories">
+          <project-category category="category" on-drop="main.onDrop" drop-success-handler="main.dropSuccessHandler" no-items-hint="main.noItemsHint"></project-category>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+  <script type="text/javascript" src="js/vendor/draganddrop.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/layout/main.controller.js"></script>
+  <script type="text/javascript" src="js/features/category/category.directive.js"></script>
+  <script type="text/javascript" src="js/features/category/category.service.js"></script>
+  </body>
+</html>
