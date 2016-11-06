@@ -26,18 +26,23 @@
         }
     }
 
-    CategoryController.$inject = [];
+    CategoryController.$inject = ['$filter'];
 
     /* @ngInject */
-    function CategoryController() {
+    function CategoryController($filter) {
         var vm = this;
 
         vm.project = '';
 
         vm.addProject = function() {
             if(event.keyCode == 13 && vm.project && vm.category){
-                vm.category.projects.push({description: vm.project});
+                vm.category.projects.push({
+                    id:  Math.floor((Math.random() * Math.pow(2, 32)) + 1),
+                    description: vm.project,
+                    weight: 0
+                });
                 vm.project = '';
+                vm.category.projects = $filter('orderBy')(vm.category.projects, ['-weight','description']);
                 //TODO:  call some API to send the data to a server
             }
         };

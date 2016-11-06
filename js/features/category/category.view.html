@@ -1,8 +1,10 @@
-<div class="project-category" ui-on-drop="cat.onDrop($event, $data, cat.category.projects)">
-    <div class="project-category__header">{{cat.category.name}} <span class="badge pull-right" ng-bind="cat.category.projects.length"></span></div>
+<div class="project-category">
+    <div class="project-category__header" ui-on-drop="cat.onDrop($event, $data, {array: cat.category.projects})">
+        {{cat.category.name}} <span class="badge pull-right" ng-bind="cat.category.projects.length"></span>
+    </div>
     <input type="text" class="add-section__input add-section__input--small" ng-model="cat.project" ng-keyup="cat.addProject()" placeholder="Add an item">
-    <div class="project-category__item"
-         ui-draggable="true" drag="item" on-drop-success="cat.dropSuccessHandler($event, item, cat.category.projects)"
-         ng-repeat="item in cat.category.projects | orderBy:'description'" ng-bind="item.description"></div>
+    <div class="project-category__item" ui-on-drop="cat.onDrop($event, $data, {array: cat.category.projects, srcItem: item})"
+         ui-draggable="true" drag="item" on-drop-success="cat.dropSuccessHandler($event, item, {array: cat.category.projects})"
+         ng-repeat="item in cat.category.projects" ng-bind="item.description"></div>
     <div class="project-category__no-items" ng-bind="cat.noItemsHint" ng-if="cat.category.projects.length === 0"></div>
 </div>
